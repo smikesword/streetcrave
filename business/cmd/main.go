@@ -16,7 +16,7 @@ func main(){
 	dbName := os.Getenv("DB_NAME")
 	dbPassword := os.Getenv("DB_PASSWORD")
 
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
 		dbUser, dbPassword, dbHost, dbPort, dbName)
 
 	fmt.Println("connection string", connStr)
