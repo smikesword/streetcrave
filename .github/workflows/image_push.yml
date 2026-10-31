@@ -58,7 +58,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v7
         with:
-          context: ./business-service.Dockerfile
+          context: .
+          file: business-service.Dockerfile
           sbom: true
           provenance: mode=max
           push: true
@@ -89,7 +90,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v7
         with:
-          context: ./review-service.Dockerfile
+          context: .
+          file: review-service.Dockerfile
           sbom: true
           provenance: mode=max
           push: true
