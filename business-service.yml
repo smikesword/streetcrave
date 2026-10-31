@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: business
+  name: business
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: business
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: business
+    spec:
+      containers:
+      - image: business-service:latest
+        imagePullPolicy: Always
+        name: business-service
+        ports:
+        - containerPort: 8881
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: streetcravela-db-cluster-app
+                key: username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: streetcravela-db-cluster-app
+                key: password
+          - name: DB_NAME
+            value: business-service
+          - name: DB_HOST
+            value: streetcravela-db-cluster-rw
+          - name: DB_PORT
+            value: "5432"
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: business
+  name: business
+spec:
+  ports:
+  - port: 8881
+    protocol: TCP
+    targetPort: 8881
+  selector:
+    app: business
+status:
+  loadBalancer: {}

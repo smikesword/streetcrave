@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: business-service
+spec:
+  name: business-service
+  owner: user
+  cluster:
+    name: streetcravela-db-cluster
+ 
