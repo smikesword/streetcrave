@@ -19,6 +19,8 @@ func main(){
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		dbUser, dbPassword, dbHost, dbPort, dbName)
 
+	fmt.Println("connection string", connStr)
+
 	repo, err := repository.New(connStr)
 	if err != nil {
 		panic(err)
